@@ -1,14 +1,24 @@
 <!-- Bot Tracker Script -->
+<!-- 
+  SECURITY NOTE: This API key has been exposed in a public repository.
+  Action Required:
+  1. Rotate this Supabase API key immediately in your Supabase dashboard
+  2. Consider using environment variables via Jekyll's config
+  3. Ensure Row-Level Security (RLS) policies are properly configured
+  4. For sensitive operations, use server-side functions with service role keys
+-->
 <script>
 (function() {
   'use strict';
 
+  // TODO: Move API key to environment variable or server-side configuration
   var config = {
     apiUrl: 'https://tnatvavwwwakbqnhkvvh.supabase.co/functions/v1/bot-detector',
+    // WARNING: This key should be rotated as it was exposed in the repository
     apiKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRuYXR2YXZ3d3dha2JxbmhrdnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MzE3NzcsImV4cCI6MjA4MjAwNzc3N30.CQooynu85feoz1bI8Oa7wq7iVE6b8uyhxeopIn4gJws',
     siteName: 'https://mnam1ss.github.io/stunning-fiesta/',
     siteUrl: 'https://mnam1ss.github.io/stunning-fiesta/',
-    debug: true
+    debug: false  // Changed to false to prevent information leakage in production
   };
 
   function log(message, data) {

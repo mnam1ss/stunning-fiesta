@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="home-header">
+  <h1>{{ site.title }}</h1>
+  <p>Latest news updates</p>
+</div>
+
+<div class="post-list">
+  {% for post in site.posts %}
+    <div class="post-list-item">
+      <h2 class="post-list-heading">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <div class="post-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%B %d, %Y" }}
+        </time>
+        {% if post.source %}
+        <span class="post-source">
+          | Source: <a href="{{ post.source }}" target="_blank" rel="noopener">{{ post.source | replace: 'https://', '' | replace: 'http://', '' | truncate: 30 }}</a>
+        </span>
+        {% endif %}
+      </div>
+      {% if post.excerpt %}
+      <div class="post-excerpt">
+        {{ post.excerpt | strip_html | truncate: 200 }}
+      </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
