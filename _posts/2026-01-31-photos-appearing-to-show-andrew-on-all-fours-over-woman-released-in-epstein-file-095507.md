@@ -13,5 +13,3 @@ Key points:
 - Photographs appearing to show Prince Andrew in a compromising position have emerged from Epstein case files.
 - The prince has repeatedly denied any wrongdoing related to his friendship with Jeffrey Epstein.
 - The release continues years of intense public examination of the royal's links to the disgraced financier.
-
-**Original Source:** [https://www.bbc.com/news/articles/c4g5490xmkeo?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/c4g5490xmkeo?at_medium=RSS&at_campaign=rss)
