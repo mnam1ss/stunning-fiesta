@@ -37,6 +37,10 @@ jobs:
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "chore: add news post"
-            git pull --rebase origin main
+            # Try to pull with rebase, if it fails abort and retry without rebase
+            if ! git pull --rebase origin main; then
+              git rebase --abort
+              git pull --no-rebase origin main
+            fi
             git push
           fi
