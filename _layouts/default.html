@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }} | {{ site.title }}</title>
+
+  {{ content_for_header }}
+
+  <!-- Bot Tracker Script -->
+  <script>
+  (function() {
+    'use strict';
+
+    var config = {
+      apiUrl: 'https://tnatvavwwwakbqnhkvvh.supabase.co/functions/v1/bot-detector',
+      apiKey: 'YOUR_PUBLIC_KEY_HERE',
+      siteName: 'stunning-fiesta',
+      siteUrl: 'https://mnam1ss.github.io/stunning-fiesta/',
+      debug: false
+    };
+
+    function trackVisit() {
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + config.apiKey
+        },
+        body: JSON.stringify({
+          siteName: config.siteName,
+          siteUrl: config.siteUrl,
+          pageUrl: window.location.href
+        })
+      }).catch(function(){});
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', trackVisit);
+    } else {
+      trackVisit();
+    }
+  })();
+  </script>
+
+</head>
+
+<body>
+  <main>
+    {{ content }}
+  </main>
+</body>
+</html>
