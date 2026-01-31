@@ -15,5 +15,3 @@ Key points:
 *   A new bill proposes applying the death penalty for nationalist-motivated murders.
 *   Supporters view it as a deterrent, while critics warn of legal and diplomatic consequences.
 *   The legislation faces an uncertain future in Israel's parliament.
-
-**Original Source:** [https://www.bbc.com/news/articles/clymp8v7ye2o?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/clymp8v7ye2o?at_medium=RSS&at_campaign=rss)

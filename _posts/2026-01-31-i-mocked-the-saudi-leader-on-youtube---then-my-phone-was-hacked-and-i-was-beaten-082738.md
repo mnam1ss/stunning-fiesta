@@ -15,5 +15,3 @@ Key points:
 *   A UK court has ordered Saudi Arabia to pay damages to a satirist for harassment and assault.
 *   The claimant alleged he was targeted after posting critical online content about Saudi leaders.
 *   The legal award totals around £3 million, though collection remains uncertain.
-
-**Original Source:** [https://www.bbc.com/news/articles/cj6w3zgden0o?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/cj6w3zgden0o?at_medium=RSS&at_campaign=rss)

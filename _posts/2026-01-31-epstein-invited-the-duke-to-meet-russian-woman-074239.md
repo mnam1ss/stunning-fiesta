@@ -11,5 +11,3 @@ Key points:
 *   Newly unsealed court documents contain an email from Jeffrey Epstein inviting "The Duke" to meet a Russian woman.
 *   The release is part of a wider document disclosure mandated by a US court.
 *   The documents stem from litigation connected to Epstein, who faced sex trafficking charges prior to his death.
-
-**Original Source:** [https://www.bbc.com/news/articles/c4g5490xmkeo?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/c4g5490xmkeo?at_medium=RSS&at_campaign=rss)

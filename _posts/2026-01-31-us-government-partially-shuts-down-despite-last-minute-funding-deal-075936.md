@@ -17,5 +17,3 @@ The shutdown impacts various agencies whose annual appropriations have not been 
 *   A partial US government shutdown began due to a missed funding deadline.
 *   A stopgap funding deal exists but cannot be voted on until the House returns Monday.
 *   Essential services continue, but many federal operations are paused.
-
-**Original Source:** [https://www.bbc.com/news/articles/ce8rk33dpvmo?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/ce8rk33dpvmo?at_medium=RSS&at_campaign=rss)

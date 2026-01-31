@@ -15,5 +15,3 @@ Key points:
 *   The document release totals around three million pages from a prior civil case.
 *   Records contain frequent mentions of Donald Trump and emails to a contact called "The Duke."
 *   The disclosures aim to provide transparency into Epstein's circle of associates.
-
-**Original Source:** [https://www.bbc.com/news/articles/cevnmxyy4wjo?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/cevnmxyy4wjo?at_medium=RSS&at_campaign=rss)

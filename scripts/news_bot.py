@@ -150,8 +150,6 @@ source: "{source_link}"
 ---
 
 {content}
-
-**Original Source:** [{source_link}]({source_link})
 """
 
     with open(path, "w", encoding="utf-8") as f:

@@ -17,5 +17,3 @@ Officials encourage taxpayers to complete their returns as early as possible to 
 *   HMRC tax helplines are open as the January 31 online filing deadline nears.
 *   More than one million people missed the submission deadline last tax year.
 *   Late filers can face automatic financial penalties.
-
-**Original Source:** [https://www.bbc.com/news/articles/cwy10ye2030o?at_medium=RSS&at_campaign=rss](https://www.bbc.com/news/articles/cwy10ye2030o?at_medium=RSS&at_campaign=rss)
