@@ -1,7 +1,11 @@
-import os, json, hashlib, re
+import hashlib
+import json
+import os
+import re
 from datetime import datetime, timezone
+
 import requests
-import xml.etree.ElementTree as ET
+from defusedxml import ElementTree as ET
 
 POSTS_DIR = "_posts"
 STATE_FILE = "scripts/state.json"
@@ -117,7 +121,7 @@ def main():
     for feed in FEEDS:
         try:
             items = parse_rss(fetch_rss(feed))
-        except Exception as e:
+        except (requests.RequestException, ET.ParseError) as e:
             print("Feed error:", feed, e)
             continue
 
