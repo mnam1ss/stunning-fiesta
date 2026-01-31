@@ -5,7 +5,17 @@ import re
 from datetime import datetime, timezone
 
 import requests
-import xml.etree.ElementTree as ET
+try:
+    from defusedxml import ElementTree as ET
+except ImportError:
+    # Fallback to standard library with warning
+    import xml.etree.ElementTree as ET
+    import warnings
+    warnings.warn(
+        "defusedxml not installed. Using standard xml.etree.ElementTree which may be vulnerable to XML attacks. "
+        "Install defusedxml with: pip install defusedxml",
+        RuntimeWarning
+    )
 
 POSTS_DIR = "_posts"
 STATE_FILE = "scripts/state.json"
