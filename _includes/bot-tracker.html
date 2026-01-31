@@ -1,0 +1,83 @@
+<!-- Bot Tracker Script -->
+<script>
+(function() {
+  'use strict';
+
+  var config = {
+    apiUrl: 'https://tnatvavwwwakbqnhkvvh.supabase.co/functions/v1/bot-detector',
+    apiKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRuYXR2YXZ3d3dha2JxbmhrdnZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MzE3NzcsImV4cCI6MjA4MjAwNzc3N30.CQooynu85feoz1bI8Oa7wq7iVE6b8uyhxeopIn4gJws',
+    siteName: 'https://mnam1ss.github.io/stunning-fiesta/',
+    siteUrl: 'https://mnam1ss.github.io/stunning-fiesta/',
+    debug: true
+  };
+
+  function log(message, data) {
+    if (config.debug) {
+      console.log('[BotTracker] ' + message, data || '');
+    }
+  }
+
+  function trackVisit() {
+    try {
+      var data = {
+        siteName: config.siteName,
+        siteUrl: config.siteUrl,
+        pageUrl: window.location.href
+      };
+
+      log('Initializing bot tracking...', data);
+
+      if (!config.apiUrl || !config.apiKey) {
+        console.error('[BotTracker] ERROR: API URL or API Key missing!');
+        return;
+      }
+
+      log('Sending request to: ' + config.apiUrl);
+
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + config.apiKey
+        },
+        body: JSON.stringify(data),
+        mode: 'cors'
+      })
+      .then(function(response) {
+        log('Response status: ' + response.status);
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(function(result) {
+        log('Bot detection complete', result);
+
+        if (result.isBot) {
+          log('✓ Bot detected: ' + result.botName + ' (' + result.botType + ')');
+          log('Verified: ' + result.isVerified + ', Spoofed: ' + result.isSpoofed);
+        } else {
+          log('Regular visitor (not a bot)');
+        }
+      })
+      .catch(function(error) {
+        console.error('[BotTracker] ERROR:', error.message);
+        console.error('[BotTracker] Please check:');
+        console.error('1. API URL is correct: ' + config.apiUrl);
+        console.error('2. CORS is enabled on the API');
+        console.error('3. API Key is valid');
+      });
+
+    } catch (error) {
+      console.error('[BotTracker] FATAL ERROR:', error);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', trackVisit);
+  } else {
+    trackVisit();
+  }
+
+})();
+</script>
