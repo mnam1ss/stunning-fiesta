@@ -2,6 +2,12 @@
 
 This repository automatically fetches news from RSS feeds, rewrites them using DeepSeek AI, and publishes them as Jekyll posts. **New posts are instantly submitted to Google Indexing API** for faster search engine indexing.
 
+## Quick Links
+
+- 📖 [Setup Instructions](#setup) (below)
+- 🔍 [How to Check Indexing API & Submit Old URLs](INDEXING_GUIDE.md)
+- 🛠️ [Scripts Documentation](scripts/README.md)
+
 ## Features
 
 - 📰 Fetches news from BBC and CNN RSS feeds every 10 minutes
