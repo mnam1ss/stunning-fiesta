@@ -1,0 +1,43 @@
+name: Indexing API Tools
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        type: choice
+        options:
+          - check_api
+          - submit_old_urls
+        default: 'check_api'
+
+permissions:
+  contents: read
+
+jobs:
+  run-tool:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests google-auth google-api-python-client
+
+      - name: Run Check Indexing API
+        if: ${{ github.event.inputs.action == 'check_api' }}
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL || 'https://mnam1ss.github.io/stunning-fiesta' }}
+        run: python scripts/check_indexing_api.py
+
+      - name: Run Submit Old URLs
+        if: ${{ github.event.inputs.action == 'submit_old_urls' }}
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL || 'https://mnam1ss.github.io/stunning-fiesta' }}
+        run: python scripts/submit_old_urls.py
