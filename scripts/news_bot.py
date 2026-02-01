@@ -6,6 +6,9 @@ from datetime import datetime, timezone
 
 import requests
 import xml.etree.ElementTree as ET
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 POSTS_DIR = "_posts"
 STATE_FILE = "scripts/state.json"
@@ -18,6 +21,10 @@ FEEDS = [
 
 MAX_POSTS_PER_RUN = 1  # every run: create 1 new post only (safe)
 MAX_DESC_CHARS = 600   # how much snippet to send to DeepSeek
+
+# Google Indexing API configuration
+INDEXING_API_SCOPES = ["https://www.googleapis.com/auth/indexing"]
+BASE_URL = "https://mnam1ss.github.io/stunning-fiesta"
 
 
 def slugify(text: str) -> str:
@@ -158,6 +165,77 @@ source: "{source_link}"
     return path
 
 
+def submit_to_indexing_api(post_url: str) -> bool:
+    """
+    Submits a URL to Google Indexing API for instant indexing.
+    Returns True if successful, False otherwise.
+    """
+    try:
+        # Get service account credentials from environment variable
+        service_account_json = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+        
+        if not service_account_json:
+            print("Warning: GOOGLE_SERVICE_ACCOUNT_JSON not set. Skipping Indexing API submission.")
+            return False
+        
+        # Parse the JSON credentials
+        credentials_dict = json.loads(service_account_json)
+        
+        # Create credentials from service account
+        credentials = service_account.Credentials.from_service_account_info(
+            credentials_dict,
+            scopes=INDEXING_API_SCOPES
+        )
+        
+        # Build the indexing service
+        service = build('indexing', 'v3', credentials=credentials)
+        
+        # Prepare the request body
+        body = {
+            "url": post_url,
+            "type": "URL_UPDATED"
+        }
+        
+        # Submit the URL for indexing
+        response = service.urlNotifications().publish(body=body).execute()
+        
+        print(f"✓ Successfully submitted to Indexing API: {post_url}")
+        print(f"  Response: {response}")
+        return True
+        
+    except HttpError as e:
+        print(f"✗ HTTP error submitting to Indexing API: {e}")
+        return False
+    except json.JSONDecodeError as e:
+        print(f"✗ Error parsing service account JSON: {e}")
+        return False
+    except Exception as e:
+        print(f"✗ Error submitting to Indexing API: {e}")
+        return False
+
+
+def get_post_url(filename: str) -> str:
+    """
+    Converts a post filename to its public URL.
+    Example: 2026-01-31-some-title-120000.md -> https://mnam1ss.github.io/stunning-fiesta/2026/01/31/some-title-120000.html
+    """
+    # Extract date and slug from filename
+    # Format: YYYY-MM-DD-slug-HHMMSS.md
+    basename = os.path.basename(filename).replace('.md', '')
+    parts = basename.split('-')
+    
+    if len(parts) >= 3:
+        year = parts[0]
+        month = parts[1]
+        day = parts[2]
+        slug = '-'.join(parts[3:])
+        
+        return f"{BASE_URL}/{year}/{month}/{day}/{slug}.html"
+    
+    # Fallback
+    return f"{BASE_URL}/{basename}.html"
+
+
 def main():
     state = load_state()
     seen = set(state.get("seen", []))
@@ -180,6 +258,11 @@ def main():
             p = write_post(it["title"], content, it["link"])
 
             print("Created post:", p)
+            
+            # Submit to Google Indexing API instantly
+            post_url = get_post_url(p)
+            submit_to_indexing_api(post_url)
+            
             seen.add(nid)
             created += 1
 
