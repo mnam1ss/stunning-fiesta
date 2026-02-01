@@ -2,6 +2,12 @@
 
 This repository automatically fetches news from RSS feeds, rewrites them using DeepSeek AI, and publishes them as Jekyll posts. **New posts are instantly submitted to Google Indexing API** for faster search engine indexing.
 
+## Quick Links
+
+- 📖 [Setup Instructions](#setup) (below)
+- 🔍 [How to Check Indexing API & Submit Old URLs](INDEXING_GUIDE.md)
+- 🛠️ [Scripts Documentation](scripts/README.md)
+
 ## Features
 
 - 📰 Fetches news from BBC and CNN RSS feeds every 10 minutes
@@ -9,6 +15,8 @@ This repository automatically fetches news from RSS feeds, rewrites them using D
 - 📝 Publishes posts to a Jekyll-based GitHub Pages site
 - ⚡ **Instantly submits new posts to Google Indexing API** (no delay!)
 - 🔄 Maintains state to avoid duplicate posts
+- 🔍 **Check if Indexing API is working correctly**
+- 📤 **Submit all old URLs to Google for indexing**
 
 ## Setup
 
@@ -80,6 +88,39 @@ You can also set these environment variables:
 The automation runs via GitHub Actions:
 - **Schedule**: Every 10 minutes
 - **Manual**: Can be triggered manually via "Actions" tab
+
+### Indexing API Tools
+
+Two additional workflows are available for managing Google Indexing:
+
+#### 1. Check Indexing API Status
+- **Purpose**: Verify that Google Indexing API is configured correctly and working
+- **How to run**: 
+  1. Go to "Actions" tab in GitHub
+  2. Select "Indexing API Tools" workflow
+  3. Click "Run workflow"
+  4. Choose "check_api" from the dropdown
+  5. Click "Run workflow"
+- **What it checks**:
+  - ✅ Service account credentials are valid
+  - ✅ API connection is working
+  - ✅ Can submit URLs successfully
+  - ✅ Can retrieve URL metadata
+
+#### 2. Submit All Old URLs
+- **Purpose**: Submit all existing posts to Google Indexing API (posts that were created before the indexing feature)
+- **How to run**:
+  1. Go to "Actions" tab in GitHub
+  2. Select "Indexing API Tools" workflow
+  3. Click "Run workflow"
+  4. Choose "submit_old_urls" from the dropdown
+  5. Click "Run workflow"
+- **Features**:
+  - 📊 Scans all posts in `_posts/` directory
+  - 📤 Submits each URL to Google Indexing API
+  - ⏱️ Rate limiting to respect API quotas (200/day)
+  - 📈 Shows progress and success/failure statistics
+  - ⏸️ Automatic pauses to avoid rate limits
 
 ## Dependencies
 
