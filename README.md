@@ -60,7 +60,11 @@ To enable instant indexing with Google:
 Edit `scripts/news_bot.py` to customize:
 - `FEEDS`: Add or remove RSS feed URLs
 - `MAX_POSTS_PER_RUN`: Number of posts to create per run (default: 1)
-- `BASE_URL`: Your GitHub Pages URL (default: https://mnam1ss.github.io/stunning-fiesta)
+
+You can also set these environment variables:
+- `SITE_BASE_URL`: Your GitHub Pages URL (default: https://mnam1ss.github.io/stunning-fiesta)
+- `DEEPSEEK_API_KEY`: Required for AI content rewriting
+- `GOOGLE_SERVICE_ACCOUNT_JSON`: Required for Google Indexing API (see setup above)
 
 ## How It Works
 

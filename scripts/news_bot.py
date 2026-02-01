@@ -24,7 +24,7 @@ MAX_DESC_CHARS = 600   # how much snippet to send to DeepSeek
 
 # Google Indexing API configuration
 INDEXING_API_SCOPES = ["https://www.googleapis.com/auth/indexing"]
-BASE_URL = "https://mnam1ss.github.io/stunning-fiesta"
+BASE_URL = os.getenv("SITE_BASE_URL", "https://mnam1ss.github.io/stunning-fiesta")
 
 
 def slugify(text: str) -> str:
